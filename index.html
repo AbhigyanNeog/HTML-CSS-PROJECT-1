@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Product Launch</title>
+  <link rel="stylesheet" href="product.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    /* Brand Name at top */
+    .brand-name {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 3rem;
+      text-align: center;
+      color: #ff4b2b;
+      margin: 20px 0;
+      text-shadow: 0 0 10px #ff4b2b;
+    }
+
+    /* Slideshow container */
+    .slideshow-container {
+      max-width: 100%;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 40px;
+      text-align: center; /* center images */
+    }
+    .slide {
+      display: none;
+      max-width: 100%;
+      height: auto;
+      object-fit: contain; /* show full image */
+      border-radius: 10px;
+      box-shadow: 0 0 25px rgba(255, 75, 43, 0.6);
+      transition: opacity 1s ease-in-out;
+      margin: 0 auto; /* center horizontally */
+    }
+    .slide.active {
+      display: block;
+      animation: fadeIn 1s ease forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Glow effect on hero image */
+    .hero-image img {
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(255, 75, 43, 0.6);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .hero-image img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 40px rgba(255, 75, 43, 1);
+    }
+  </style>
+</head>
+<body>
+  <!-- Brand Name -->
+  <div class="brand-name">GadgetPro</div>
+
+  <!-- Slideshow -->
+  <div class="slideshow-container">
+    <img
+      class="slide active"
+      src="feature4.jpg"
+      alt="Feature 4"
+      loading="lazy"
+    />
+    <img class="slide" src="feature 6.jpg" alt="Feature 6" loading="lazy" />
+    <img class="slide" src="feature 5.avif" alt="Feature 5" loading="lazy" />
+  </div>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-content">
+      <h1>
+        Introducing
+        <span>GadgetPro</span>
+      </h1>
+      <p>The ultimate tool to make your life smarter, faster, and better.</p>
+      <a href="#pricing" class="btn-primary">Buy Now</a>
+    </div>
+    <div class="hero-image">
+      <img src="gadgetpro.png" alt="GadgetPro" />
+    </div>
+  </header>
+
+  <!-- Features Section -->
+  <section class="features">
+    <h2>Features</h2>
+    <div class="feature-grid">
+      <!-- Smarter Design (Feature 3 image) -->
+      <div class="feature-card">
+        <img src="feature3.png" alt="Smart Design" />
+        <h3>Smart Design</h3>
+        <p>Ergonomic and sleek, crafted for everyday use.</p>
+      </div>
+      <!-- High Performance (Feature 1 image) -->
+      <div class="feature-card">
+        <img src="feature1.png" alt="High Performance" />
+        <h3>High Performance</h3>
+        <p>Blazing fast speed with powerful components.</p>
+      </div>
+      <!-- Long Battery Life (Feature 2 image) -->
+      <div class="feature-card">
+        <img src="feature2.png" alt="Long Battery Life" />
+        <h3>Long Battery Life</h3>
+        <p>Stay powered all day with advanced battery tech.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials">
+    <h2>What Our Users Say</h2>
+    <div class="testimonial-grid">
+      <div class="testimonial-card">
+        <p>"GadgetPro changed my life! I can't imagine my day without it."</p>
+        <div class="stars">★★★★★</div>
+        <span>- Alex Johnson</span>
+      </div>
+      <div class="testimonial-card">
+        <p>"Absolutely worth every penny. The performance is unmatched."</p>
+        <div class="stars">★★★★★</div>
+        <span>- Priya Sharma</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing" class="pricing">
+    <h2>Choose Your Plan</h2>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <h3>Basic</h3>
+        <p class="price">$199</p>
+        <ul>
+          <li>Standard Features</li>
+          <li>1-Year Warranty</li>
+        </ul>
+        <a href="#" class="btn-primary">Buy Now</a>
+      </div>
+      <div class="pricing-card featured">
+        <h3>Pro</h3>
+        <p class="price">$299</p>
+        <ul>
+          <li>All Features</li>
+          <li>2-Year Warranty</li>
+          <li>Priority Support</li>
+        </ul>
+        <a href="#" class="btn-primary">Buy Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="cta">
+    <h2>Be the First to Experience the Future</h2>
+    <a href="#" class="btn-primary">Order Today</a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 GadgetPro Inc. | Contact: info@gadgetpro.com</p>
+  </footer>
+
+  <script>
+    // Slideshow script: change every 2 seconds
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function showSlides() {
+      slides.forEach((slide) => slide.classList.remove('active'));
+      slideIndex++;
+      if (slideIndex > slides.length) slideIndex = 1;
+      slides[slideIndex - 1].classList.add('active');
+      setTimeout(showSlides, 2000);
+    }
+
+    setTimeout(showSlides, 2000);
+  </script>
+</body>
+</html>
