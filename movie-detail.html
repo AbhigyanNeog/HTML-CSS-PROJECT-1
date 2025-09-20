@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MovieReviewHub - Discover & Review Movies</title>
+  <title>Movie Details - MovieReviewHub</title>
 
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -18,7 +18,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="index.html">
         <i class="fas fa-film me-2"></i>MovieReviewHub
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -27,37 +27,59 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link active" href="#home">Home</a>
+            <a class="nav-link" href="index.html">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#movies">Movies</a>
+            <a class="nav-link" href="index.html#movies">Movies</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#reviews">Reviews</a>
+            <a class="nav-link" href="index.html#reviews">Reviews</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#submit-review">Submit Review</a>
+            <a class="nav-link" href="index.html#submit-review">Submit Review</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <section id="home" class="hero-section">
-    <div class="hero-overlay">
-      <div class="container text-center">
-        <h1 class="hero-title">Discover Your Next Favorite Movie</h1>
-        <p class="hero-subtitle">Read reviews, share your thoughts, and explore the world of cinema</p>
-        <div class="search-container mt-4">
-          <div class="row justify-content-center">
-            <div class="col-md-6">
-              <div class="input-group">
-                <input type="text" class="form-control" id="searchInput" placeholder="Search movies by title or genre...">
-                <button class="btn btn-warning" type="button" id="searchBtn">
-                  <i class="fas fa-search"></i>
-                </button>
-              </div>
+  <!-- Movie Detail Section -->
+  <section class="movie-detail-section py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 mb-4">
+          <img id="moviePoster" src="" alt="Movie Poster" class="img-fluid rounded shadow-lg">
+        </div>
+        <div class="col-lg-8">
+          <h1 id="movieTitle" class="movie-detail-title mb-3"></h1>
+          <div class="movie-detail-meta mb-4">
+            <span id="movieGenre" class="badge bg-warning text-dark me-2"></span>
+            <span id="movieYear" class="text-muted me-3"></span>
+            <span id="movieDuration" class="text-muted me-3"></span>
+            <div class="rating-display d-inline-block">
+              <span id="movieRating" class="rating-number me-2"></span>
+              <div id="movieStars" class="rating-stars d-inline-block"></div>
+            </div>
+          </div>
+          <p id="movieDescription" class="movie-detail-description mb-4"></p>
+          
+          <div class="movie-actions mb-4">
+            <button class="btn btn-warning me-3" onclick="watchMovie()">
+              <i class="fas fa-play me-2"></i>Watch Now
+            </button>
+            <button class="btn btn-outline-warning" onclick="openReviewModal()">
+              <i class="fas fa-star me-2"></i>Write Review
+            </button>
+          </div>
+
+          <div class="movie-info-grid">
+            <div class="info-item">
+              <h5><i class="fas fa-users me-2"></i>Cast</h5>
+              <div id="movieCast" class="cast-list"></div>
+            </div>
+            <div class="info-item">
+              <h5><i class="fas fa-tv me-2"></i>Where to Watch</h5>
+              <div id="moviePlatforms" class="platforms-list"></div>
             </div>
           </div>
         </div>
@@ -65,56 +87,12 @@
     </div>
   </section>
 
-  <!-- Filter Section -->
-  <section class="filter-section py-4">
+  <!-- Reviews Section -->
+  <section class="movie-reviews-section py-5">
     <div class="container">
-      <div class="row">
-        <div class="col-md-3 mb-3">
-          <select class="form-select" id="genreFilter">
-            <option value="">All Genres</option>
-            <option value="Action">Action</option>
-            <option value="Comedy">Comedy</option>
-            <option value="Drama">Drama</option>
-            <option value="Horror">Horror</option>
-            <option value="Romance">Romance</option>
-            <option value="Thriller">Thriller</option>
-            <option value="Sci-Fi">Sci-Fi</option>
-          </select>
-        </div>
-        <div class="col-md-3 mb-3">
-          <select class="form-select" id="yearFilter">
-            <option value="">All Years</option>
-            <option value="2024">2024</option>
-            <option value="2023">2023</option>
-            <option value="2022">2022</option>
-            <option value="2021">2021</option>
-            <option value="2020">2020</option>
-          </select>
-        </div>
-        <div class="col-md-3 mb-3">
-          <select class="form-select" id="ratingFilter">
-            <option value="">All Ratings</option>
-            <option value="4">4+ Stars</option>
-            <option value="3">3+ Stars</option>
-            <option value="2">2+ Stars</option>
-            <option value="1">1+ Stars</option>
-          </select>
-        </div>
-        <div class="col-md-3 mb-3">
-          <button class="btn btn-outline-light w-100" id="clearFilters">
-            <i class="fas fa-times me-2"></i>Clear Filters
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Movies Section -->
-  <section id="movies" class="movies-section py-5">
-    <div class="container">
-      <h2 class="section-title text-center mb-5">Featured Movies</h2>
-      <div class="row" id="moviesContainer">
-        <!-- Movies will be dynamically loaded here -->
+      <h2 class="section-title text-center mb-5">Reviews for <span id="movieTitleReviews"></span></h2>
+      <div class="row" id="movieReviewsContainer">
+        <!-- Reviews will be loaded here -->
       </div>
     </div>
   </section>
@@ -129,12 +107,7 @@
         </div>
         <div class="modal-body">
           <form id="reviewForm">
-            <div class="mb-3">
-              <label for="movieSelect" class="form-label">Select Movie</label>
-              <select class="form-select" id="movieSelect" required>
-                <option value="">Choose a movie...</option>
-              </select>
-            </div>
+            <input type="hidden" id="movieId" value="">
             <div class="mb-3">
               <label for="reviewerName" class="form-label">Your Name</label>
               <input type="text" class="form-control" id="reviewerName" required>
@@ -168,16 +141,6 @@
     </div>
   </div>
 
-  <!-- Reviews Section -->
-  <section id="reviews" class="reviews-section py-5">
-    <div class="container">
-      <h2 class="section-title text-center mb-5">Latest Reviews</h2>
-      <div class="row" id="reviewsContainer">
-        <!-- Reviews will be dynamically loaded here -->
-      </div>
-    </div>
-  </section>
-
   <!-- Footer -->
   <footer class="footer bg-dark text-light py-4">
     <div class="container">
@@ -203,7 +166,7 @@
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <!-- Custom JS -->
-  <script src="script.js"></script>
+  <script src="movie-detail.js"></script>
 
 </body>
 </html>
