@@ -1,62 +1,353 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MovieReviewHub - Discover & Review Movies</title>
-
+  <title>GadgetPro - Revolutionary Smart Device</title>
+  
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="movie.css">
+  <link rel="stylesheet" href="product.css" />
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
+  
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:ital,wght@0,400;0,600;1,300&display=swap" rel="stylesheet">
+  <style>
+    /* Brand Name at top */
+    .brand-name {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 3rem;
+      text-align: center;
+      color: #ff4b2b;
+      margin: 20px 0;
+      text-shadow: 0 0 10px #ff4b2b;
+    }
+
+    /* Slideshow container */
+    .slideshow-container {
+      max-width: 100%;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 40px;
+      text-align: center; /* center images */
+    }
+    .slide {
+      display: none;
+      max-width: 100%;
+      height: auto;
+      object-fit: contain; /* show full image */
+      border-radius: 10px;
+      box-shadow: 0 0 25px rgba(255, 75, 43, 0.6);
+      transition: opacity 1s ease-in-out;
+      margin: 0 auto; /* center horizontally */
+    }
+    .slide.active {
+      display: block;
+      animation: fadeIn 1s ease forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Glow effect on hero image */
+    .hero-image img {
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(255, 75, 43, 0.6);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .hero-image img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 40px rgba(255, 75, 43, 1);
+    }
+  </style>
 </head>
 <body>
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
     <div class="container">
-      <a class="navbar-brand" href="#">
-        <i class="fas fa-film me-2"></i>MovieReviewHub
+      <a class="navbar-brand fw-bold text-primary" href="index.html">
+        <i class="fas fa-mobile-alt me-2"></i>GadgetPro
       </a>
+      
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
+      
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
+        <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link active" href="#home">Home</a>
+            <a class="nav-link active" href="index.html">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#movies">Movies</a>
+            <a class="nav-link" href="#features">Features</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#reviews">Reviews</a>
+            <a class="nav-link" href="#pricing">Pricing</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#submit-review">Submit Review</a>
+            <a class="nav-link" href="product.html">Products</a>
           </li>
         </ul>
+        
+        <div class="d-flex">
+          <a href="checkout.html" class="btn btn-outline-primary me-2 position-relative">
+            <i class="fas fa-shopping-cart me-1"></i>
+            Cart <span class="cart-count">0</span>
+          </a>
+          <a href="product.html" class="btn btn-primary">Shop Now</a>
+        </div>
       </div>
     </div>
   </nav>
 
+  <!-- Brand Name -->
+  <div class="brand-name">GadgetPro</div>
+
+  <!-- Slideshow -->
+  <div class="slideshow-container">
+    <img
+      class="slide active"
+      src="feature4.jpg"
+      alt="Feature 4"
+      loading="lazy"
+    />
+    <img class="slide" src="feature 6.jpg" alt="Feature 6" loading="lazy" />
+    <img class="slide" src="feature 5.avif" alt="Feature 5" loading="lazy" />
+  </div>
+
   <!-- Hero Section -->
-  <section id="home" class="hero-section">
-    <div class="hero-overlay">
-      <div class="container text-center">
-        <h1 class="hero-title">Discover Your Next Favorite Movie</h1>
-        <p class="hero-subtitle">Read reviews, share your thoughts, and explore the world of cinema</p>
-        <div class="search-container mt-4">
-          <div class="row justify-content-center">
-            <div class="col-md-6">
-              <div class="input-group">
-                <input type="text" class="form-control" id="searchInput" placeholder="Search movies by title or genre...">
-                <button class="btn btn-warning" type="button" id="searchBtn">
-                  <i class="fas fa-search"></i>
-                </button>
+  <header class="hero">
+    <div class="container">
+      <div class="row align-items-center min-vh-75">
+        <div class="col-lg-6 col-md-12">
+          <div class="hero-content">
+            <h1 class="display-4 fw-bold mb-4">
+              Introducing
+              <span class="text-primary">GadgetPro</span>
+            </h1>
+            <p class="lead mb-4">The revolutionary smart device that transforms how you work, play, and live. Experience cutting-edge technology designed for the modern world.</p>
+            <div class="hero-buttons">
+              <a href="#pricing" class="btn btn-primary btn-lg me-3 mb-2">
+                <i class="fas fa-shopping-cart me-2"></i>Buy Now
+              </a>
+              <a href="#features" class="btn btn-outline-primary btn-lg mb-2">
+                <i class="fas fa-play me-2"></i>Learn More
+              </a>
+            </div>
+            <div class="hero-stats mt-4">
+              <div class="row text-center">
+                <div class="col-4">
+                  <div class="stat-item">
+                    <h4 class="text-primary mb-0">50K+</h4>
+                    <small class="text-muted">Happy Users</small>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="stat-item">
+                    <h4 class="text-primary mb-0">4.9★</h4>
+                    <small class="text-muted">Rating</small>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="stat-item">
+                    <h4 class="text-primary mb-0">24/7</h4>
+                    <small class="text-muted">Support</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-12">
+          <div class="hero-image text-center">
+            <img src="gadgetpro.png" alt="GadgetPro" class="img-fluid" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Features Section -->
+  <section id="features" class="features py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center mb-5">
+          <h2 class="display-5 fw-bold text-primary">Why Choose GadgetPro?</h2>
+          <p class="lead">Discover the features that make GadgetPro the ultimate choice for tech enthusiasts</p>
+        </div>
+      </div>
+      <div class="row g-4">
+        <!-- Smart Design -->
+        <div class="col-lg-4 col-md-6">
+          <div class="feature-card h-100 text-center p-4">
+            <div class="feature-icon mb-3">
+              <img src="feature3.png" alt="Smart Design" class="img-fluid" style="max-width: 80px;" />
+            </div>
+            <h3 class="h4 mb-3">Smart Design</h3>
+            <p class="mb-4">Ergonomic and sleek design crafted for everyday use. Premium materials and intuitive interface make it a joy to use.</p>
+            <a href="#pricing" class="btn btn-outline-primary">Learn More</a>
+          </div>
+        </div>
+        <!-- High Performance -->
+        <div class="col-lg-4 col-md-6">
+          <div class="feature-card h-100 text-center p-4">
+            <div class="feature-icon mb-3">
+              <img src="feature1.png" alt="High Performance" class="img-fluid" style="max-width: 80px;" />
+            </div>
+            <h3 class="h4 mb-3">High Performance</h3>
+            <p class="mb-4">Blazing fast speed with powerful components. Experience seamless multitasking and lightning-quick response times.</p>
+            <a href="#pricing" class="btn btn-outline-primary">Learn More</a>
+          </div>
+        </div>
+        <!-- Long Battery Life -->
+        <div class="col-lg-4 col-md-6">
+          <div class="feature-card h-100 text-center p-4">
+            <div class="feature-icon mb-3">
+              <img src="feature2.png" alt="Long Battery Life" class="img-fluid" style="max-width: 80px;" />
+            </div>
+            <h3 class="h4 mb-3">Long Battery Life</h3>
+            <p class="mb-4">Stay powered all day with advanced battery technology. Never worry about running out of juice during important tasks.</p>
+            <a href="#pricing" class="btn btn-outline-primary">Learn More</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Additional CTA in Features -->
+      <div class="row mt-5">
+        <div class="col-12 text-center">
+          <div class="cta-box p-4 rounded">
+            <h3 class="mb-3">Ready to Experience the Future?</h3>
+            <p class="mb-4">Join thousands of satisfied customers who have already made the switch to GadgetPro.</p>
+            <a href="#pricing" class="btn btn-primary btn-lg">
+              <i class="fas fa-rocket me-2"></i>Get Started Today
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center mb-5">
+          <h2 class="display-5 fw-bold text-primary">What Our Customers Say</h2>
+          <p class="lead">Don't just take our word for it - hear from our satisfied customers</p>
+        </div>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+          <div class="testimonial-card h-100 p-4">
+            <div class="stars mb-3">
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+            </div>
+            <p class="mb-4">"GadgetPro completely transformed my productivity! The smart features and intuitive design make it an absolute game-changer. I can't imagine my day without it."</p>
+            <div class="d-flex align-items-center">
+              <div class="avatar me-3">
+                <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                  <span class="text-white fw-bold">AJ</span>
+                </div>
+              </div>
+              <div>
+                <h6 class="mb-0">Alex Johnson</h6>
+                <small class="text-muted">Tech Entrepreneur</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="testimonial-card h-100 p-4">
+            <div class="stars mb-3">
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+            </div>
+            <p class="mb-4">"Absolutely worth every penny! The performance is unmatched and the battery life is incredible. This is exactly what I was looking for in a smart device."</p>
+            <div class="d-flex align-items-center">
+              <div class="avatar me-3">
+                <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                  <span class="text-white fw-bold">PS</span>
+                </div>
+              </div>
+              <div>
+                <h6 class="mb-0">Priya Sharma</h6>
+                <small class="text-muted">Software Engineer</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="testimonial-card h-100 p-4">
+            <div class="stars mb-3">
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+            </div>
+            <p class="mb-4">"The customer support is outstanding and the device itself exceeded all my expectations. GadgetPro has become an essential part of my daily routine."</p>
+            <div class="d-flex align-items-center">
+              <div class="avatar me-3">
+                <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                  <span class="text-white fw-bold">MR</span>
+                </div>
+              </div>
+              <div>
+                <h6 class="mb-0">Michael Rodriguez</h6>
+                <small class="text-muted">Business Analyst</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Trust indicators -->
+      <div class="row mt-5">
+        <div class="col-12 text-center">
+          <div class="trust-indicators p-4">
+            <h4 class="mb-4">Trusted by Industry Leaders</h4>
+            <div class="row align-items-center">
+              <div class="col-md-3 col-6 mb-3">
+                <div class="trust-item">
+                  <i class="fas fa-shield-alt text-primary fs-1 mb-2"></i>
+                  <h6>Secure & Reliable</h6>
+                </div>
+              </div>
+              <div class="col-md-3 col-6 mb-3">
+                <div class="trust-item">
+                  <i class="fas fa-award text-primary fs-1 mb-2"></i>
+                  <h6>Award Winning</h6>
+                </div>
+              </div>
+              <div class="col-md-3 col-6 mb-3">
+                <div class="trust-item">
+                  <i class="fas fa-users text-primary fs-1 mb-2"></i>
+                  <h6>50K+ Users</h6>
+                </div>
+              </div>
+              <div class="col-md-3 col-6 mb-3">
+                <div class="trust-item">
+                  <i class="fas fa-headset text-primary fs-1 mb-2"></i>
+                  <h6>24/7 Support</h6>
+                </div>
               </div>
             </div>
           </div>
@@ -65,134 +356,149 @@
     </div>
   </section>
 
-  <!-- Filter Section -->
-  <section class="filter-section py-4">
+  <!-- Pricing Section -->
+  <section id="pricing" class="pricing py-5">
     <div class="container">
       <div class="row">
-        <div class="col-md-3 mb-3">
-          <select class="form-select" id="genreFilter">
-            <option value="">All Genres</option>
-            <option value="Action">Action</option>
-            <option value="Comedy">Comedy</option>
-            <option value="Drama">Drama</option>
-            <option value="Horror">Horror</option>
-            <option value="Romance">Romance</option>
-            <option value="Thriller">Thriller</option>
-            <option value="Sci-Fi">Sci-Fi</option>
-          </select>
+        <div class="col-12 text-center mb-5">
+          <h2 class="display-5 fw-bold text-primary">Choose Your Perfect Plan</h2>
+          <p class="lead">Select the plan that best fits your needs and budget</p>
         </div>
-        <div class="col-md-3 mb-3">
-          <select class="form-select" id="yearFilter">
-            <option value="">All Years</option>
-            <option value="2024">2024</option>
-            <option value="2023">2023</option>
-            <option value="2022">2022</option>
-            <option value="2021">2021</option>
-            <option value="2020">2020</option>
-          </select>
+      </div>
+      <div class="row g-4 justify-content-center">
+        <div class="col-lg-4 col-md-6">
+          <div class="pricing-card h-100 p-4 text-center">
+            <h3 class="h4 mb-3">Basic</h3>
+            <div class="price mb-4">
+              <span class="display-4 fw-bold text-primary">$199</span>
+              <small class="text-muted d-block">One-time payment</small>
+            </div>
+            <ul class="list-unstyled mb-4">
+              <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Standard Features</li>
+              <li class="mb-2"><i class="fas fa-check text-success me-2"></i>1-Year Warranty</li>
+              <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Email Support</li>
+              <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Basic Setup Guide</li>
+            </ul>
+            <a href="#" class="btn btn-outline-primary btn-lg w-100">
+              <i class="fas fa-shopping-cart me-2"></i>Buy Now
+            </a>
+          </div>
         </div>
-        <div class="col-md-3 mb-3">
-          <select class="form-select" id="ratingFilter">
-            <option value="">All Ratings</option>
-            <option value="4">4+ Stars</option>
-            <option value="3">3+ Stars</option>
-            <option value="2">2+ Stars</option>
-            <option value="1">1+ Stars</option>
-          </select>
+        <div class="col-lg-4 col-md-6">
+          <div class="pricing-card featured h-100 p-4 text-center position-relative">
+            <div class="badge bg-warning text-dark position-absolute top-0 start-50 translate-middle px-3 py-2">
+              Most Popular
+            </div>
+            <h3 class="h4 mb-3">Pro</h3>
+            <div class="price mb-4">
+              <span class="display-4 fw-bold text-primary">$299</span>
+              <small class="text-muted d-block">One-time payment</small>
+            </div>
+            <ul class="list-unstyled mb-4">
+              <li class="mb-2"><i class="fas fa-check text-success me-2"></i>All Features</li>
+              <li class="mb-2"><i class="fas fa-check text-success me-2"></i>2-Year Warranty</li>
+              <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Priority Support</li>
+              <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Premium Setup</li>
+              <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Free Shipping</li>
+            </ul>
+            <a href="#" class="btn btn-primary btn-lg w-100">
+              <i class="fas fa-rocket me-2"></i>Buy Now
+            </a>
+          </div>
         </div>
-        <div class="col-md-3 mb-3">
-          <button class="btn btn-outline-light w-100" id="clearFilters">
-            <i class="fas fa-times me-2"></i>Clear Filters
-          </button>
+        <div class="col-lg-4 col-md-6">
+          <div class="pricing-card h-100 p-4 text-center">
+            <h3 class="h4 mb-3">Enterprise</h3>
+            <div class="price mb-4">
+              <span class="display-4 fw-bold text-primary">$499</span>
+              <small class="text-muted d-block">One-time payment</small>
+            </div>
+            <ul class="list-unstyled mb-4">
+              <li class="mb-2"><i class="fas fa-check text-success me-2"></i>All Pro Features</li>
+              <li class="mb-2"><i class="fas fa-check text-success me-2"></i>3-Year Warranty</li>
+              <li class="mb-2"><i class="fas fa-check text-success me-2"></i>24/7 Support</li>
+              <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Custom Setup</li>
+              <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Training Session</li>
+            </ul>
+            <a href="#" class="btn btn-outline-primary btn-lg w-100">
+              <i class="fas fa-building me-2"></i>Contact Sales
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Money-back guarantee -->
+      <div class="row mt-5">
+        <div class="col-12 text-center">
+          <div class="guarantee-box p-4 rounded">
+            <i class="fas fa-shield-alt text-primary fs-1 mb-3"></i>
+            <h4 class="mb-3">30-Day Money-Back Guarantee</h4>
+            <p class="mb-0">Not satisfied? Return your GadgetPro within 30 days for a full refund. No questions asked.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Movies Section -->
-  <section id="movies" class="movies-section py-5">
+  <!-- Final Call to Action -->
+  <section class="cta py-5">
     <div class="container">
-      <h2 class="section-title text-center mb-5">Featured Movies</h2>
-      <div class="row" id="moviesContainer">
-        <!-- Movies will be dynamically loaded here -->
-      </div>
-    </div>
-  </section>
-
-  <!-- Submit Review Modal -->
-  <div class="modal fade" id="submitReviewModal" tabindex="-1">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content bg-dark text-light">
-        <div class="modal-header">
-          <h5 class="modal-title">Submit Your Review</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      <div class="row">
+        <div class="col-12 text-center">
+          <h2 class="display-4 fw-bold mb-4">Ready to Transform Your Life?</h2>
+          <p class="lead mb-4">Join thousands of satisfied customers and experience the future of smart technology today.</p>
+          <div class="cta-buttons">
+            <a href="#pricing" class="btn btn-primary btn-lg me-3 mb-2">
+              <i class="fas fa-shopping-cart me-2"></i>Order Now
+            </a>
+            <a href="#" class="btn btn-outline-light btn-lg mb-2">
+              <i class="fas fa-phone me-2"></i>Call Us
+            </a>
+          </div>
+          <div class="urgency-text mt-4">
+            <p class="mb-0"><i class="fas fa-clock me-2"></i>Limited time offer - Free shipping on all orders!</p>
+          </div>
         </div>
-        <div class="modal-body">
-          <form id="reviewForm">
-            <div class="mb-3">
-              <label for="movieSelect" class="form-label">Select Movie</label>
-              <select class="form-select" id="movieSelect" required>
-                <option value="">Choose a movie...</option>
-              </select>
-            </div>
-            <div class="mb-3">
-              <label for="reviewerName" class="form-label">Your Name</label>
-              <input type="text" class="form-control" id="reviewerName" required>
-            </div>
-            <div class="mb-3">
-              <label for="reviewTitle" class="form-label">Review Title</label>
-              <input type="text" class="form-control" id="reviewTitle" required>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Rating</label>
-              <div class="star-rating">
-                <i class="fas fa-star" data-rating="1"></i>
-                <i class="fas fa-star" data-rating="2"></i>
-                <i class="fas fa-star" data-rating="3"></i>
-                <i class="fas fa-star" data-rating="4"></i>
-                <i class="fas fa-star" data-rating="5"></i>
-              </div>
-              <input type="hidden" id="ratingValue" value="0">
-            </div>
-            <div class="mb-3">
-              <label for="reviewText" class="form-label">Your Review</label>
-              <textarea class="form-control" id="reviewText" rows="4" required></textarea>
-            </div>
-            <div class="text-end">
-              <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Cancel</button>
-              <button type="submit" class="btn btn-warning">Submit Review</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Reviews Section -->
-  <section id="reviews" class="reviews-section py-5">
-    <div class="container">
-      <h2 class="section-title text-center mb-5">Latest Reviews</h2>
-      <div class="row" id="reviewsContainer">
-        <!-- Reviews will be dynamically loaded here -->
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="footer bg-dark text-light py-4">
+  <footer class="footer py-4">
     <div class="container">
       <div class="row">
         <div class="col-md-6">
-          <h5><i class="fas fa-film me-2"></i>MovieReviewHub</h5>
-          <p>Your ultimate destination for movie reviews and ratings.</p>
-        </div>
-        <div class="col-md-6 text-md-end">
-          <p>&copy; 2024 MovieReviewHub. All rights reserved.</p>
+          <h5 class="mb-3">GadgetPro</h5>
+          <p class="mb-3">Revolutionizing the way you interact with technology. Experience the future today.</p>
           <div class="social-links">
-            <a href="#" class="text-light me-3"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="text-light me-3"><i class="fab fa-facebook-f"></i></a>
             <a href="#" class="text-light me-3"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="text-light"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-light me-3"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-light me-3"><i class="fab fa-linkedin-in"></i></a>
           </div>
+        </div>
+        <div class="col-md-3">
+          <h6 class="mb-3">Quick Links</h6>
+          <ul class="list-unstyled">
+            <li><a href="#features" class="text-light text-decoration-none">Features</a></li>
+            <li><a href="#pricing" class="text-light text-decoration-none">Pricing</a></li>
+            <li><a href="#" class="text-light text-decoration-none">Support</a></li>
+            <li><a href="#" class="text-light text-decoration-none">About Us</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h6 class="mb-3">Contact</h6>
+          <ul class="list-unstyled">
+            <li class="mb-2"><i class="fas fa-envelope me-2"></i>info@gadgetpro.com</li>
+            <li class="mb-2"><i class="fas fa-phone me-2"></i>+1 (555) 123-4567</li>
+            <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i>123 Tech Street, Silicon Valley</li>
+          </ul>
+        </div>
+      </div>
+      <hr class="my-4">
+      <div class="row">
+        <div class="col-12 text-center">
+          <p class="mb-0">&copy; 2025 GadgetPro Inc. All rights reserved. | Privacy Policy | Terms of Service</p>
         </div>
       </div>
     </div>
@@ -200,10 +506,118 @@
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <!-- Custom JS -->
-  <script src="script.js"></script>
-
+  
+  <!-- Custom JavaScript -->
+  <script src="js/main.js"></script>
+  
+  <script>
+    // Enhanced interactions for landing page
+    $(document).ready(function() {
+      // Add interactive behavior to Buy Now buttons
+      $('.btn-primary').on('click', function(e) {
+        const buttonText = $(this).text().toLowerCase();
+        
+        if (buttonText.includes('buy now') || buttonText.includes('order')) {
+          e.preventDefault();
+          
+          // Determine which product to add to cart
+          let productId = 'pro'; // Default to Pro
+          let productName = 'GadgetPro Pro';
+          let productPrice = 299;
+          
+          // Check if button is in pricing section
+          const pricingCard = $(this).closest('.pricing-card');
+          if (pricingCard.length) {
+            const planType = pricingCard.find('h3').text().toLowerCase();
+            if (planType.includes('basic')) {
+              productId = 'basic';
+              productName = 'GadgetPro Basic';
+              productPrice = 199;
+            } else if (planType.includes('enterprise')) {
+              productId = 'enterprise';
+              productName = 'GadgetPro Enterprise';
+              productPrice = 499;
+            }
+          }
+          
+          // Add to cart and redirect
+          GadgetPro.addToCart(productId, productName, productPrice);
+          
+          // Show modal for quick checkout or redirect to product page
+          showQuickCheckoutModal(productId, productName, productPrice);
+        }
+      });
+      
+      // Add hover effects to feature cards
+      $('.feature-card').hover(
+        function() {
+          $(this).find('.feature-icon img').css('transform', 'scale(1.1) rotate(5deg)');
+        },
+        function() {
+          $(this).find('.feature-icon img').css('transform', 'scale(1) rotate(0deg)');
+        }
+      );
+      
+      // Add click tracking for analytics
+      $('a, button').on('click', function() {
+        const element = $(this);
+        const text = element.text().trim();
+        const href = element.attr('href');
+        
+        console.log('User clicked:', {
+          text: text,
+          href: href,
+          timestamp: new Date().toISOString()
+        });
+      });
+      
+      // Initialize cart count
+      const cart = JSON.parse(localStorage.getItem('gadgetpro_cart')) || [];
+      GadgetPro.updateCartDisplay(cart);
+    });
+    
+    // Quick checkout modal
+    function showQuickCheckoutModal(productId, productName, productPrice) {
+      const modal = $(`
+        <div class="modal fade" id="quickCheckoutModal" tabindex="-1">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Quick Checkout</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <div class="modal-body text-center">
+                <i class="fas fa-shopping-cart text-primary mb-3" style="font-size: 3rem;"></i>
+                <h4 class="mb-3">${productName} Added to Cart!</h4>
+                <p class="text-muted mb-4">What would you like to do next?</p>
+                <div class="d-grid gap-2">
+                  <a href="checkout.html" class="btn btn-primary">
+                    <i class="fas fa-credit-card me-2"></i>Proceed to Checkout
+                  </a>
+                  <a href="product.html?id=${productId}" class="btn btn-outline-primary">
+                    <i class="fas fa-info-circle me-2"></i>View Product Details
+                  </a>
+                  <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    <i class="fas fa-shopping-bag me-2"></i>Continue Shopping
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `);
+      
+      $('body').append(modal);
+      const bsModal = new bootstrap.Modal(modal[0]);
+      bsModal.show();
+      
+      modal.on('hidden.bs.modal', function() {
+        modal.remove();
+      });
+    }
+  </script>
 </body>
 </html>

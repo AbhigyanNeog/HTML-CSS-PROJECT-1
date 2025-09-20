@@ -1,0 +1,600 @@
+/* General styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  background: #fff;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Bootstrap overrides */
+:root {
+  --bs-primary: #ff4b2b;
+  --bs-primary-rgb: 255, 75, 43;
+}
+
+.btn-primary {
+  --bs-btn-bg: #ff4b2b;
+  --bs-btn-border-color: #ff4b2b;
+  --bs-btn-hover-bg: #e03e1a;
+  --bs-btn-hover-border-color: #e03e1a;
+  --bs-btn-active-bg: #d63615;
+  --bs-btn-active-border-color: #d63615;
+}
+
+.btn-outline-primary {
+  --bs-btn-color: #ff4b2b;
+  --bs-btn-border-color: #ff4b2b;
+  --bs-btn-hover-bg: #ff4b2b;
+  --bs-btn-hover-border-color: #ff4b2b;
+}
+
+.text-primary {
+  color: #ff4b2b !important;
+}
+
+/* Utility classes */
+.min-vh-75 {
+  min-height: 75vh;
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: #ff4b2b;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  display: inline-block;
+  margin-top: 15px;
+}
+
+.btn-primary:hover {
+  background-color: #e03e1a;
+  box-shadow: 0 0 10px #e03e1a;
+}
+
+/* Brand Name */
+.brand-name {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 3rem;
+  text-align: center;
+  color: #ff4b2b;
+  margin: 20px 0;
+  text-shadow: 0 0 10px #ff4b2b;
+}
+
+/* Slideshow */
+.slideshow-container {
+  width: 100%;
+  max-width: 800px; /* Adjust max width as needed */
+  height: 400px;    /* Fixed height to keep layout stable */
+  margin: 0 auto 40px;
+  position: relative;
+  overflow: hidden;
+  background: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  box-shadow: 0 0 30px rgba(255, 75, 43, 0.5);
+}
+
+.slide {
+  display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 0 25px rgba(255, 75, 43, 0.6);
+  transition: opacity 1s ease-in-out;
+}
+
+.slide.active {
+  display: block;
+  animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+  padding: 80px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23ff4b2b" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="%23ff4b2b" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="%23ff4b2b" opacity="0.1"/><circle cx="10" cy="60" r="0.5" fill="%23ff4b2b" opacity="0.1"/><circle cx="90" cy="40" r="0.5" fill="%23ff4b2b" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  opacity: 0.3;
+  z-index: 1;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-content h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.hero-content .lead {
+  font-size: clamp(1.1rem, 2vw, 1.25rem);
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.hero-buttons .btn {
+  margin-bottom: 1rem;
+  padding: 12px 30px;
+  font-weight: 600;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+
+.hero-buttons .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 75, 43, 0.3);
+}
+
+.hero-stats {
+  margin-top: 3rem;
+}
+
+.stat-item h4 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ff4b2b;
+  margin-bottom: 0.5rem;
+}
+
+.stat-item small {
+  font-size: 0.9rem;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.hero-image {
+  position: relative;
+}
+
+.hero-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(255, 75, 43, 0.3);
+  transition: all 0.4s ease;
+}
+
+.hero-image img:hover {
+  transform: scale(1.05) rotate(2deg);
+  box-shadow: 0 30px 80px rgba(255, 75, 43, 0.4);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero {
+    padding: 60px 0;
+  }
+  
+  .hero-stats .row .col-4 {
+    margin-bottom: 1rem;
+  }
+  
+  .hero-buttons .btn {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}
+
+/* Features Section */
+.features {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  position: relative;
+}
+
+.feature-card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 75, 43, 0.1);
+  overflow: hidden;
+  position: relative;
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #ff4b2b, #ff6b4a);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover::before {
+  transform: scaleX(1);
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 50px rgba(255, 75, 43, 0.2);
+}
+
+.feature-icon img {
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover .feature-icon img {
+  transform: scale(1.1);
+}
+
+.feature-card h3 {
+  color: #ff4b2b;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.feature-card p {
+  color: #666;
+  line-height: 1.6;
+}
+
+.cta-box {
+  background: linear-gradient(135deg, #ff4b2b, #ff6b4a);
+  color: white;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(255, 75, 43, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.cta-box:hover {
+  transform: translateY(-5px);
+}
+
+.cta-box h3 {
+  color: white;
+  font-weight: 600;
+}
+
+.cta-box p {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Testimonials Section */
+.testimonials {
+  background: #fff;
+  position: relative;
+}
+
+.testimonial-card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 75, 43, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonial-card::before {
+  content: '"';
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 4rem;
+  color: rgba(255, 75, 43, 0.1);
+  font-family: serif;
+  line-height: 1;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px rgba(255, 75, 43, 0.15);
+}
+
+.testimonial-card p {
+  font-style: italic;
+  color: #333;
+  line-height: 1.6;
+  position: relative;
+  z-index: 2;
+}
+
+.stars {
+  color: #ffc107;
+}
+
+.avatar {
+  flex-shrink: 0;
+}
+
+.trust-indicators {
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  border-radius: 20px;
+  margin-top: 3rem;
+}
+
+.trust-item {
+  text-align: center;
+  padding: 1rem;
+}
+
+.trust-item h6 {
+  color: #333;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+/* Pricing Section */
+.pricing {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  position: relative;
+}
+
+.pricing-card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.pricing-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 75, 43, 0.05), rgba(255, 107, 74, 0.05));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.pricing-card:hover::before {
+  opacity: 1;
+}
+
+.pricing-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 50px rgba(255, 75, 43, 0.2);
+}
+
+.pricing-card.featured {
+  border: 2px solid #ff4b2b;
+  transform: scale(1.05);
+}
+
+.pricing-card.featured:hover {
+  transform: scale(1.05) translateY(-10px);
+}
+
+.pricing-card.featured::before {
+  background: linear-gradient(135deg, rgba(255, 75, 43, 0.1), rgba(255, 107, 74, 0.1));
+}
+
+.pricing-card h3 {
+  color: #ff4b2b;
+  font-weight: 600;
+  position: relative;
+  z-index: 2;
+}
+
+.price {
+  color: #333;
+  font-weight: 700;
+  position: relative;
+  z-index: 2;
+}
+
+.pricing-card ul {
+  position: relative;
+  z-index: 2;
+}
+
+.pricing-card ul li {
+  color: #666;
+  margin-bottom: 0.75rem;
+}
+
+.guarantee-box {
+  background: linear-gradient(135deg, #28a745, #20c997);
+  color: white;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(40, 167, 69, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.guarantee-box:hover {
+  transform: translateY(-5px);
+}
+
+.guarantee-box h4 {
+  color: white;
+  font-weight: 600;
+}
+
+.guarantee-box p {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Call to Action */
+.cta {
+  background: linear-gradient(135deg, #ff4b2b, #ff6b4a);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+  opacity: 0.3;
+}
+
+.cta .container {
+  position: relative;
+  z-index: 2;
+}
+
+.cta h2 {
+  color: white;
+  font-weight: 700;
+}
+
+.cta .lead {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.cta-buttons .btn {
+  margin-bottom: 1rem;
+  padding: 12px 30px;
+  font-weight: 600;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+
+.cta-buttons .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.urgency-text {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50px;
+  padding: 0.75rem 1.5rem;
+  display: inline-block;
+  backdrop-filter: blur(10px);
+}
+
+/* Footer */
+.footer {
+  background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+  color: #fff;
+  position: relative;
+}
+
+.footer h5, .footer h6 {
+  color: #ff4b2b;
+  font-weight: 600;
+}
+
+.footer a {
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: #ff4b2b !important;
+}
+
+.social-links a {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 75, 43, 0.1);
+  border-radius: 50%;
+  text-align: center;
+  line-height: 40px;
+  transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+  background: #ff4b2b;
+  transform: translateY(-2px);
+}
+
+/* Animation classes */
+.animate-in {
+  animation: slideInUp 0.6s ease forwards;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive design improvements */
+@media (max-width: 768px) {
+  .brand-name {
+    font-size: 2rem;
+  }
+  
+  .slideshow-container {
+    height: 250px;
+    margin-bottom: 20px;
+  }
+  
+  .feature-card, .testimonial-card, .pricing-card {
+    margin-bottom: 2rem;
+  }
+  
+  .pricing-card.featured {
+    transform: none;
+  }
+  
+  .pricing-card.featured:hover {
+    transform: translateY(-10px);
+  }
+  
+  .cta-buttons .btn {
+    width: 100%;
+  }
+  
+  .trust-indicators .row .col-md-3 {
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero {
+    padding: 40px 0;
+  }
+  
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  
+  .hero-stats .row .col-4 {
+    margin-bottom: 1.5rem;
+  }
+  
+  .stat-item h4 {
+    font-size: 1.5rem;
+  }
+}

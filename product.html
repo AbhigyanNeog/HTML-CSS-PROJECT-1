@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Product Details - GadgetPro</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="product.css" />
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
+  
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <style>
+    .product-gallery {
+      position: relative;
+      margin-bottom: 2rem;
+    }
+    
+    .product-image {
+      display: none;
+      text-align: center;
+    }
+    
+    .product-image.active {
+      display: block;
+    }
+    
+    .product-image img {
+      max-width: 100%;
+      height: 400px;
+      object-fit: contain;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    
+    .product-image img:hover {
+      transform: scale(1.05);
+    }
+    
+    .product-thumbnails {
+      display: flex;
+      gap: 10px;
+      margin-top: 1rem;
+      justify-content: center;
+    }
+    
+    .thumbnail {
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border-color 0.3s ease;
+    }
+    
+    .thumbnail.active {
+      border-color: #ff4b2b;
+    }
+    
+    .thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .quantity-input {
+      width: 60px;
+      text-align: center;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 5px;
+    }
+    
+    .quantity-btn {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      border: 1px solid #ddd;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .quantity-btn:hover {
+      background: #ff4b2b;
+      color: white;
+      border-color: #ff4b2b;
+    }
+    
+    .product-actions {
+      display: flex;
+      gap: 15px;
+      margin-top: 2rem;
+    }
+    
+    .product-actions .btn {
+      flex: 1;
+    }
+    
+    .product-specifications {
+      background: #f8f9fa;
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin-top: 2rem;
+    }
+    
+    .reviews-container {
+      margin-top: 2rem;
+    }
+    
+    .review-item {
+      background: white;
+      border: 1px solid #e9ecef;
+    }
+    
+    .rating {
+      font-size: 1.1rem;
+    }
+    
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 9999;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      padding: 1rem 1.5rem;
+      transform: translateX(400px);
+      transition: transform 0.3s ease;
+    }
+    
+    .notification.show {
+      transform: translateX(0);
+    }
+    
+    .notification-success {
+      border-left: 4px solid #28a745;
+    }
+    
+    .notification-error {
+      border-left: 4px solid #dc3545;
+    }
+    
+    .notification-info {
+      border-left: 4px solid #17a2b8;
+    }
+    
+    .notification-content {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.6);
+      transform: scale(0);
+      animation: ripple 0.6s linear;
+      pointer-events: none;
+    }
+    
+    @keyframes ripple {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+    
+    .hover-effect {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(255, 75, 43, 0.2);
+    }
+    
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: #ff4b2b;
+      color: white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      font-size: 0.7rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .cart-count.visible {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold text-primary" href="index.html">
+        <i class="fas fa-mobile-alt me-2"></i>GadgetPro
+      </a>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html#features">Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html#pricing">Pricing</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="checkout.html">Cart <span class="cart-count">0</span></a>
+          </li>
+        </ul>
+        
+        <div class="d-flex">
+          <a href="checkout.html" class="btn btn-outline-primary me-2">
+            <i class="fas fa-shopping-cart me-1"></i>
+            Cart <span class="cart-count">0</span>
+          </a>
+          <a href="#" class="btn btn-primary">Buy Now</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Product Detail Section -->
+  <section class="product-detail py-5">
+    <div class="container">
+      <div class="row">
+        <!-- Product Images -->
+        <div class="col-lg-6">
+          <div class="product-gallery">
+            <div class="product-image active">
+              <img src="gadgetpro.png" alt="Product Image">
+            </div>
+            <div class="product-thumbnails">
+              <!-- Thumbnails will be populated by JavaScript -->
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product Info -->
+        <div class="col-lg-6">
+          <div class="product-info">
+            <h1 class="product-name mb-3">GadgetPro Pro</h1>
+            
+            <!-- Rating -->
+            <div class="rating-section mb-3">
+              <div class="d-flex align-items-center">
+                <div class="rating me-2">
+                  <i class="fas fa-star text-warning"></i>
+                  <i class="fas fa-star text-warning"></i>
+                  <i class="fas fa-star text-warning"></i>
+                  <i class="fas fa-star text-warning"></i>
+                  <i class="fas fa-star text-warning"></i>
+                </div>
+                <span class="product-rating fw-bold me-2">4.9</span>
+                <span class="product-reviews-count text-muted">(2,847 reviews)</span>
+              </div>
+            </div>
+            
+            <!-- Pricing -->
+            <div class="pricing-section mb-4">
+              <div class="d-flex align-items-center">
+                <span class="product-price display-4 fw-bold text-primary me-3">$299</span>
+                <span class="product-original-price text-muted text-decoration-line-through me-2">$399</span>
+                <span class="product-discount badge bg-success">25% OFF</span>
+              </div>
+            </div>
+            
+            <!-- Description -->
+            <div class="description-section mb-4">
+              <p class="product-description lead">The flagship model with premium features and cutting-edge technology.</p>
+            </div>
+            
+            <!-- Features -->
+            <div class="features-section mb-4">
+              <h5 class="mb-3">Key Features:</h5>
+              <ul class="product-features list-unstyled">
+                <!-- Features will be populated by JavaScript -->
+              </ul>
+            </div>
+            
+            <!-- Quantity Selector -->
+            <div class="quantity-section mb-4">
+              <label class="form-label fw-bold">Quantity:</label>
+              <div class="quantity-controls">
+                <button class="quantity-btn quantity-decrease" data-action="decrease">-</button>
+                <input type="number" class="quantity-input" value="1" min="1">
+                <button class="quantity-btn quantity-increase" data-action="increase">+</button>
+              </div>
+            </div>
+            
+            <!-- Stock Status -->
+            <div class="stock-section mb-4">
+              <p class="stock-status mb-0">
+                <i class="fas fa-check-circle text-success me-2"></i>In Stock (15 available)
+              </p>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="product-actions">
+              <button class="btn btn-primary btn-lg add-to-cart" data-product-id="pro" data-product-name="GadgetPro Pro" data-product-price="299">
+                <i class="fas fa-shopping-cart me-2"></i>Add to Cart
+              </button>
+              <button class="btn btn-outline-danger wishlist-btn" data-product-id="pro">
+                <i class="far fa-heart me-2"></i>Add to Wishlist
+              </button>
+              <button class="btn btn-outline-primary compare-btn" data-product-id="pro">
+                <i class="fas fa-balance-scale me-2"></i>Compare
+              </button>
+            </div>
+            
+            <!-- Total Price -->
+            <div class="total-price-section mt-3">
+              <h5>Total: <span class="total-price text-primary">$299</span></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Product Specifications -->
+      <div class="row mt-5">
+        <div class="col-12">
+          <h3 class="mb-4">Specifications</h3>
+          <div class="product-specifications">
+            <div class="product-specifications-content">
+              <!-- Specifications will be populated by JavaScript -->
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Reviews Section -->
+      <div class="row mt-5">
+        <div class="col-12">
+          <h3 class="mb-4">Customer Reviews</h3>
+          
+          <!-- Review Form -->
+          <div class="review-form mb-5">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="mb-0">Write a Review</h5>
+              </div>
+              <div class="card-body">
+                <form id="reviewForm">
+                  <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <label for="reviewName" class="form-label">Name</label>
+                      <input type="text" class="form-control" id="reviewName" name="name" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label for="reviewRating" class="form-label">Rating</label>
+                      <select class="form-select" id="reviewRating" name="rating" required>
+                        <option value="">Select Rating</option>
+                        <option value="5">5 Stars - Excellent</option>
+                        <option value="4">4 Stars - Very Good</option>
+                        <option value="3">3 Stars - Good</option>
+                        <option value="2">2 Stars - Fair</option>
+                        <option value="1">1 Star - Poor</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="reviewComment" class="form-label">Review</label>
+                    <textarea class="form-control" id="reviewComment" name="comment" rows="4" required></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-paper-plane me-2"></i>Submit Review
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Reviews Container -->
+          <div class="reviews-container">
+            <!-- Reviews will be populated by JavaScript -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer py-4 mt-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h5 class="mb-3">GadgetPro</h5>
+          <p class="mb-3">Revolutionizing the way you interact with technology. Experience the future today.</p>
+          <div class="social-links">
+            <a href="#" class="text-light me-3"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-light me-3"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-light me-3"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-light me-3"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <h6 class="mb-3">Quick Links</h6>
+          <ul class="list-unstyled">
+            <li><a href="index.html#features" class="text-light text-decoration-none">Features</a></li>
+            <li><a href="index.html#pricing" class="text-light text-decoration-none">Pricing</a></li>
+            <li><a href="#" class="text-light text-decoration-none">Support</a></li>
+            <li><a href="#" class="text-light text-decoration-none">About Us</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h6 class="mb-3">Contact</h6>
+          <ul class="list-unstyled">
+            <li class="mb-2"><i class="fas fa-envelope me-2"></i>info@gadgetpro.com</li>
+            <li class="mb-2"><i class="fas fa-phone me-2"></i>+1 (555) 123-4567</li>
+            <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i>123 Tech Street, Silicon Valley</li>
+          </ul>
+        </div>
+      </div>
+      <hr class="my-4">
+      <div class="row">
+        <div class="col-12 text-center">
+          <p class="mb-0">&copy; 2025 GadgetPro Inc. All rights reserved. | Privacy Policy | Terms of Service</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
+  <!-- Custom JavaScript -->
+  <script src="js/main.js"></script>
+  <script src="js/products.js"></script>
+</body>
+</html>
